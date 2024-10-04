@@ -1,0 +1,32 @@
+<%= render 'shared/navbar' %>
+
+
+<h1><%= @car.model %></h1>
+<p><%= @car.brand %></p>
+<p><%= @car.year %></p>
+<p><%= @car.fuel %></p>
+<p><%= image_tag @car.image_url %></p>
+
+
+<hr>
+<% if @car.favourites.empty? %>
+  <h2>Add car to favourites</h2>
+  <%= simple_form_for [@car, @favourite] do |f| %>
+    <%= f.submit 'Add to my garage' %>
+  <% end %>
+<% else %>
+  <p>This is already in your garage</p>
+<% end %>
+
+<hr>
+<h2>Add a review</h2>
+<%= simple_form_for [@car, @review] do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :rating, collection: 0..5 %>
+  <%= f.submit %>
+<% end %>
+
+<hr>
+<% @car.reviews.each do |review| %>
+<p>Comment: <%= review.comment %> | Rating: <%= review.rating %></p>
+<% end %>

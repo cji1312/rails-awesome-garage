@@ -1,0 +1,12 @@
+<%= render 'shared/navbar' %>
+
+<h1>List of all cars</h1>
+
+<div class="cards-index">
+  <% @cars.each do |car| %>
+    <%= link_to car_path(car) do %>
+        <h2><%= car.model %></h2>
+        <%= image_tag car.image_url %>
+      </div>
+    <% end %>
+  <% end %>

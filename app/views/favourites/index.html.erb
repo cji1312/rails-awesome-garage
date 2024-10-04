@@ -1,0 +1,13 @@
+<%= render 'shared/navbar' %>
+
+<h1>My garage</h1>
+<% @favourites.each do |favourite| %>
+  <p><%= favourite.car.brand %></p>
+  <p><%= favourite.car.model %></p>
+  <%= link_to 'delete', favourite_path(favourite),
+  data: {turbo_method: :delete,
+        turbo_confirm: "Are you sure you want to delete #{favourite.car.model}?"
+        }
+  %>
+  <hr>
+<% end %>
